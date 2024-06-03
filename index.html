@@ -1,71 +1,59 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJ Matheson on PubMed</title>
+    <style>
+        .rss-feed {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .rss-feed li {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
+
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;PubMed RSS Feed&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.rss-feed {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style-type: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.rss-feed li {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;PubMed RSS Feed&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;ul class="rss-feed" id="rss-feed"&gt;&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', function () {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const rssFeedUrl = 'https://pubmed.ncbi.nlm.nih.gov/rss/search/1zG2_xdOOC5ZXCZJVvYIG3yvyJcE81MrJN_xnvUytDGoAJlELk/?limit=15&amp;utm_campaign=pubmed-2&amp;fc=20240603172211';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>fetch(rssFeedUrl)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>.then(response =&gt; response.text())</p>
-<p class="p1"><span class="Apple-converted-space">                </span>.then(data =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const parser = new DOMParser();</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const xml = parser.parseFromString(data, 'text/xml');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const items = xml.querySelectorAll('item');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const feedContainer = document.getElementById('rss-feed');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>items.forEach(item =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const title = item.querySelector('title').textContent;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const link = item.querySelector('link').textContent;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const description = item.querySelector('description').textContent;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const listItem = document.createElement('li');</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const itemLink = document.createElement('a');</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>itemLink.href = link;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>itemLink.textContent = title;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const itemDescription = document.createElement('p');</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>itemDescription.textContent = description;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>listItem.appendChild(itemLink);</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>listItem.appendChild(itemDescription);</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>feedContainer.appendChild(listItem);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">                </span>})</p>
-<p class="p1"><span class="Apple-converted-space">                </span>.catch(error =&gt; console.error('Error fetching the RSS feed:', error));</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <h1>PubMed From NJ Matheson</h1>
+    <ul class="rss-feed" id="rss-feed"></ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rssFeedUrl = 'https://pubmed.ncbi.nlm.nih.gov/rss/search/1zG2_xdOOC5ZXCZJVvYIG3yvyJcE81MrJN_xnvUytDGoAJlELk/?limit=15&utm_campaign=pubmed-2&fc=20240603172211';
+
+            fetch(rssFeedUrl)
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(data, 'text/xml');
+                    const items = xml.querySelectorAll('item');
+                    const feedContainer = document.getElementById('rss-feed');
+
+                    items.forEach(item => {
+                        const title = item.querySelector('title').textContent;
+                        const link = item.querySelector('link').textContent;
+                        const description = item.querySelector('description').textContent;
+
+                        const listItem = document.createElement('li');
+                        const itemLink = document.createElement('a');
+                        itemLink.href = link;
+                        itemLink.textContent = title;
+
+                        const itemDescription = document.createElement('p');
+                        itemDescription.textContent = description;
+
+                        listItem.appendChild(itemLink);
+                        listItem.appendChild(itemDescription);
+                        feedContainer.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching the RSS feed:', error));
+        });
+    </script>
 </body>
+
 </html>
